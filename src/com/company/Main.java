@@ -54,6 +54,9 @@ public class Main {
             else if (b>r && b>g){
                 return Color.BLUE;
             }
+            else if(r==g && g==b){
+                return Color.GRAY;
+            }
             else if (r==g && r>b){
                 return Color.YELLOW;
             }
@@ -63,25 +66,26 @@ public class Main {
             else if (g==b && b>r){
                 return Color.CYAN;
             }
-            else if(r==g && g==b){
-                return Color.GRAY;
-            }
             else{
                 return Color.BLACK;
             }
         }
 
         public static int findBestFit(int size1, int size2, int space){
+            int a;
             if (size1+size2<=space){
-                int a = 3;
+                a = 3;
             }
-            else if (size1>size2 || size2>size1){
-                int a = 2;
+            else if ((size2>size1 || size1>space) && size2<space){
+                a = 2;
             }
-            else if (size1==size2){
-                int a = 1;
+            else if ((size1>size2 || size1==size2 || size2>space) && size1<space){
+                a = 1;
             }
-            else
+            else{
+                a = 0;
+            }
+            return a;
         }
 
         public static void main(String[] args){
@@ -114,7 +118,7 @@ public class Main {
             System.out.println("Best match 2 4 4 " + bestMatch(2,4,4));
             System.out.println("Best match 8 8 4 " + bestMatch(8,8,4));
             System.out.println("Best match 4 4 4 " + bestMatch(4,4,4));
-/*
+
             // Best Fit
             System.out.println("Find Best fit 2 3 6 is " + findBestFit(2,3,6));
             System.out.println("Find Best fit 4 3 6 is " + findBestFit(4,3,6));
@@ -122,7 +126,7 @@ public class Main {
             System.out.println("Find Best fit 2 3 1 is " + findBestFit(2,3,1));
             System.out.println("Find Best fit 6 3 4 is " + findBestFit(6,3,4));
             System.out.println("Find Best fit 3 6 4 is " + findBestFit(3,6,4));
-        */
+
         }
 
 }
